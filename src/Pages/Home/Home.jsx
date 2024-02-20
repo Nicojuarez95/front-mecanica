@@ -3,7 +3,7 @@ import './home.css';
 import axios from 'axios';
 import ModaleCreateBook from '../../Components/ModalCreateBook/ModalCreateBook';
 import CardBook from '../../Components/CardBook/CardBook';
-import logo from "../../Img/logoLC.png"
+import logo from "../../Img/logotaller-removebg-preview.png"
 import { LoadStart, LoadRemove } from '../../Components/Loading.jsx'
 
 export default function Home() {
@@ -28,7 +28,7 @@ export default function Home() {
   const fetchBooks = async () => {
     LoadStart()
     try {
-      const response = await axios.get('https://biblioteca-la-carlota.onrender.com/book');
+      const response = await axios.get('http://localhost:8080/book');
       LoadRemove()
       setBooks(response.data.books);
     } catch (error) {
@@ -56,10 +56,10 @@ export default function Home() {
   const filteredAndSortedBooks = books
     .filter((book) => {
       const normalizedSearchTerm = searchTerm.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-      const normalizedTitulo = book.titulo.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      const normalizedTitulo = book.cliente.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
       return normalizedTitulo.includes(normalizedSearchTerm);
     })
-    .sort((a, b) => a.titulo.localeCompare(b.titulo));
+    .sort((a, b) => a.cliente.localeCompare(b.cliente));
   
    const handleBookDeleted = (deletedBookId) => {
     setBooks(prevBooks => prevBooks.filter(book => book._id !== deletedBookId));
@@ -69,33 +69,36 @@ export default function Home() {
     <div className='home'>
       <div className="headerHome">
         <img src={logo} alt="" />
-        <h1>BIBLIOTECA MUNICIPAL DE LA CARLOTA</h1>
-        {isLoggedIn && <button onClick={openSettings} className='linkadm2'>Agregar libro</button>}
+        <h1>Taller Lunetti</h1>
+        {isLoggedIn && <button onClick={openSettings} className='linkadm2'>Agregar Cliente</button>}
         {open && <ModaleCreateBook key={isClosed} onClose={() => { closeModal2(); fetchBooks(); }} />} {/* Actualizar libros después de cerrar el modal */}
         {isLoggedIn && <button onClick={handleLogout} className='linkadm2'>Cerrar Sesión</button>}
         {!isLoggedIn && <a href="/login" className='linkadm'>Admin</a>}
       </div>
       <div className="contlibros">
         <div className="contInp" style={{display:"flex", justifyContent:"space-between", width:"95%"}}>
-          <h2>Libros en existencia</h2>
+          <h2>Clientes</h2>
           <input
             type="text"
             ref={text}
             className='inputSearch'
-            placeholder="Buscá tu libro..."
+            placeholder="Buscá el cliente..."
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
         {filteredAndSortedBooks.length === 0 ? (
-          <p>No se encontraron libros con ese nombre.</p>
+          <p>No se encontraron clientes con ese nombre.</p>
         ) : (
           filteredAndSortedBooks.map((book) => (
             <CardBook
               key={book._id}
               id={book._id}
-              title={book.titulo}
-              category={book.categoria}
-              description={book.descripcion}
+              estado={book.estado}
+              vehiculo={book.vehiculo}
+              cliente={book.cliente}
+              fecha={book.fecha}
+              pago={book.pago}
+              total={book.total}
               isLoggedIn={isLoggedIn}
               onBookDeleted={handleBookDeleted}
             />

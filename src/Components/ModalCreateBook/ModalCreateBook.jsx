@@ -5,9 +5,12 @@ import { LoadStart, LoadRemove } from '../../Components/Loading.jsx'
 
 export default function ModaleCreateBook({ onClose }){
     const [formData, setFormData] = useState({
-        titulo: '',
-        categoria: '',
-        descripcion: ''
+        estado: '',
+        vehiculo: '',
+        cliente: '',
+        fecha: '',
+        pago: '',
+        total: '',
     });
 
     const handleInputChange = (e) => {
@@ -20,32 +23,64 @@ export default function ModaleCreateBook({ onClose }){
 
     const handleAddBook = () => {
         LoadStart()
-        axios.post('https://biblioteca-la-carlota.onrender.com/book/create', formData)
+        axios.post('http://localhost:8080/book/create', formData)
             .then(response => {
-                console.log('Libro creado:', response.data);
+                console.log('Cliente creado:', response.data);
                 LoadRemove()
                 onClose();
             })
             .catch(error => {
                 LoadRemove()
-                console.error('Error al crear el libro:', error);
+                console.error('Error al crear el cliente:', error);
             });
     };
 
     return(
         <section id="modalcreatebook">
             <div className="contForm" style={{borderRadius:"10px"}}>
+            <div className="mb-3">
+                <label htmlFor="estado" className="form-label">Estado</label>
+                <select 
+                    className={`form-select ${formData.estado}`} 
+                    id="estado" 
+                    name="estado" 
+                    value={formData.estado} 
+                    onChange={handleInputChange}
+                >
+                    <option value="">Seleccioná un estado</option>
+                    <option value="ingresado">INGRESADO</option>
+                    <option value="entregado">ENTREGADO</option>
+                </select>
+            </div>
                 <div className="mb-3">
-                    <label htmlFor="titulo" className="form-label">Nombre del libro</label>
-                    <input type="text" className="form-control" id="titulo" name="titulo" value={formData.titulo} onChange={handleInputChange}/>
+                    <label htmlFor="vehiculo" className="form-label">Marca</label>
+                    <input type="text" className="form-control" id="vehiculo" name="vehiculo" value={formData.vehiculo} onChange={handleInputChange}/>
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="categoria" className="form-label">Categoría</label>
-                    <input type="text" className="form-control" id="categoria" name="categoria" value={formData.categoria} onChange={handleInputChange}/>
+                    <label htmlFor="cliente" className="form-label">Cliente</label>
+                    <input className="form-control" id="cliente" name="cliente" value={formData.cliente} onChange={handleInputChange} rows="3"/>
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="descripcion" className="form-label">Descripción</label>
-                    <textarea className="form-control" id="descripcion" name="descripcion" value={formData.descripcion} onChange={handleInputChange} rows="3"></textarea>
+                    <label htmlFor="fecha" className="form-label">Fecha</label>
+                    <input type="date" className="form-control" id="fecha" name="fecha" value={formData.fecha} onChange={handleInputChange}/>
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="pago" className="form-label">Pago</label>
+                    <select 
+                    className={`form-select ${formData.pago}`} 
+                    id="pago" 
+                    name="pago" 
+                    value={formData.pago} 
+                    onChange={handleInputChange}
+                >
+                    <option value="">Seleccioná un estado</option>
+                    <option value="ingresado">PENDIENTE</option>
+                    <option value="entregado">REALIZADO</option>
+                </select>
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="total" className="form-label">Total</label>
+                    <input className="form-control" id="total" name="total" value={formData.total} onChange={handleInputChange} rows="3"/>
                 </div>
                 <div className="contBtn">
                     <button onClick={onClose} className="linkadm">Cancelar</button>

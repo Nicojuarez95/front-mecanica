@@ -1,7 +1,5 @@
 .card-body {
-    background-image: url("../../Img/fonodlibro2.jpg");
-    background-position: center;
-    background-size: cover; 
+    background-color: gray;
 }
 .filtro{
     z-index: 10;
@@ -19,11 +17,9 @@
 @media screen and (max-width: 600px) {
     .card-text{
         font-size: 10px;
-        margin-bottom: 5px;
     }
     .card-title{
         width: 80%;
-        text-align: end;
         font-size: 15px;
     }
     .cate{

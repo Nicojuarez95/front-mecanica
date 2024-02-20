@@ -3,7 +3,7 @@ import axios from 'axios';
 import './cardbook.css';
 import { LoadStart, LoadRemove } from '../../Components/Loading.jsx'
 
-export default function CardBook({ id, title, category, description, onBookDeleted, isLoggedIn }) {
+export default function CardBook({ id, estado, vehiculo, cliente, fecha, pago, total, onBookDeleted, isLoggedIn }) {
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [deleted, setDeleted] = useState(false);
 
@@ -13,7 +13,7 @@ export default function CardBook({ id, title, category, description, onBookDelet
 
   const confirmDelete = () => {
     LoadStart()
-    axios.delete(`https://biblioteca-la-carlota.onrender.com/book/delete/${id}`)
+    axios.delete(`http://localhost:8080/book/delete/${id}`)
       .then(response => {
         console.log('Libro eliminado:', response.data);
         LoadRemove()
@@ -46,21 +46,20 @@ export default function CardBook({ id, title, category, description, onBookDelet
     }
   }, [showConfirmation]); // Se ejecuta cuando showConfirmation cambia
 
-  // Construye el enlace a partir del título del libro
-  const linkToGoogleSearch = `https://www.google.com.ar/search?q=libro+${encodeURIComponent(title)}`;
-
   return (
     <div className="card" style={{ width: "95%", height: "auto", zIndex:"0" }}>
       <div className="card-body" style={{padding:"0"}}>
       <div className="filtro">
         <div className="card-top-body" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", background:"transparent" }}>
-          <h6 className="cate" style={{background:"transparent", color:"white"}}>{category}</h6>
-          <h5 className="card-title" style={{background:"transparent", fontWeight:"700",color:"white"}}>{title}</h5>
-          {isLoggedIn && <button className="btnDelete" style={{ background:"red", color:"white", padding:"5px", fontSize:"10px", border:"1px", borderRadius:"5px", fontWeight:"900"}} onClick={handleDelete}>BORRAR</button>}
+          <p className="card-text" style={{background:"transparent", fontWeight:"600", color:"white"}}>Estado:{estado}</p>
+          <p className="card-text" style={{background:"transparent", fontWeight:"600",color:"white"}}>Cliente: {cliente}</p>
+          <p className="card-text" style={{background:"transparent", fontWeight:"600", color:"white"}}>Vehiculo:{vehiculo}</p>
+          <p className="card-text" style={{background:"transparent", fontWeight:"600", color:"white"}}>Fecha:{fecha}</p>
+          <p className="card-text" style={{background:"transparent", fontWeight:"600", color:"white"}}>Pago:{pago}</p> 
+          <p className="card-text" style={{background:"transparent", fontWeight:"600", color:"white"}}>Total: ${total}</p>
+            {isLoggedIn && <button className="btnDelete" style={{ background:"red", color:"white", padding:"5px", fontSize:"10px", border:"1px", borderRadius:"5px", fontWeight:"900"}} onClick={handleDelete}>BORRAR</button>}
         </div>
-        <p className="card-text" style={{background:"transparent", fontWeight:"600", color:"white"}}>{description}</p>
-        {/* Usar el enlace dinámico */}
-        <a href={linkToGoogleSearch} className="card-link" target="_blank" rel="noopener noreferrer" style={{textDecoration:"none", color:"white", background:"transparent"}}>Buscá este libro en Google</a>
+        
       </div>
       </div>
     </div>
