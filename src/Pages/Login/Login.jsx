@@ -50,7 +50,7 @@ export default function Login() {
         />
       </div>
       <button onClick={handleLogin} className="btnLog" style={{border:"none", padding:"5px", background:"#afafff", borderRadius:"5px", color:"white"}}>Iniciar Sesión</button>
-      <Anchor to={'/'} style={{textDecoration:"none", color:"black", marginTop:"5%"}}>Volver a todos los libros</Anchor>
+      <Anchor to={'/'} style={{textDecoration:"none", color:"black", marginTop:"5%"}}>Volver a todos los clientes</Anchor>
     </div>
   );
 }

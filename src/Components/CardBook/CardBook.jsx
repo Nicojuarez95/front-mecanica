@@ -15,21 +15,21 @@ export default function CardBook({ id, estado, vehiculo, cliente, fecha, pago, t
     LoadStart()
     axios.delete(`http://localhost:8080/book/delete/${id}`)
       .then(response => {
-        console.log('Libro eliminado:', response.data);
+        console.log('Cliente eliminado:', response.data);
         LoadRemove()
         setDeleted(true);
         setShowConfirmation(false);
       })
       .catch(error => {
         LoadRemove()
-        console.error('Error al eliminar el libro:', error);
+        console.error('Error al eliminar el cliente:', error);
         setShowConfirmation(false);
       });
   };
 
   useEffect(() => {
     if (deleted) {
-      // Actualiza la lista de libros después de la eliminación
+      // Actualiza la lista de clientes después de la eliminación
       onBookDeleted(id);
     }
   }, [deleted, id, onBookDeleted]); // Se ejecuta cuando deleted cambia
@@ -37,7 +37,7 @@ export default function CardBook({ id, estado, vehiculo, cliente, fecha, pago, t
   useEffect(() => {
     if (showConfirmation) {
       // Muestra la alerta de confirmación
-      const confirm = window.confirm('¿Estás seguro de borrar este libro?');
+      const confirm = window.confirm('¿Estás seguro de borrar este cliente?');
       if (confirm) {
         confirmDelete();
       } else {

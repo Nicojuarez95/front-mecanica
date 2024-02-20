@@ -74,8 +74,8 @@ export default function ModaleCreateBook({ onClose }){
                     onChange={handleInputChange}
                 >
                     <option value="">Seleccioná un estado</option>
-                    <option value="ingresado">PENDIENTE</option>
-                    <option value="entregado">REALIZADO</option>
+                    <option value="pendiente">PENDIENTE</option>
+                    <option value="realizado">REALIZADO</option>
                 </select>
                 </div>
                 <div className="mb-3">
