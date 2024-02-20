@@ -1,0 +1,107 @@
+.home{
+    display: flex;
+    flex-direction: column;
+    gap: 5%;
+    height: 100vh;
+}
+.headerHome{
+    display: flex;
+    background-color: rgb(245, 245, 245);
+    justify-content: space-between;
+    align-items: center;
+    height: 100px !important;
+    padding-left: 18px;
+    padding-right: 18px;
+    box-shadow: 0px 0px 3px black;
+}
+.headerHome h1{
+    background-color: transparent;
+    font-size: 35px;
+}
+.headerHome img{
+    width: 50px;
+}
+.headerHome .linkadm{
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-weight: 600;
+    background-color: #afafff;
+    border-radius: 5px;
+    padding: 5px;
+    border: none;
+    cursor: pointer;
+}
+.headerHome .linkadm:hover{
+    background-color: rgb(152, 152, 255);
+}
+.linkadm2{
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-weight: 600;
+    background-color: #afafff;
+    border-radius: 5px;
+    padding: 5px;
+    border: none;
+    cursor: pointer;
+}
+.linkadm2:hover{
+    background-color: rgb(152, 152, 255);
+}
+.contFiltros{
+    display: flex;
+    justify-content: center;
+    gap: 5%;
+    width: 100%;
+    align-items: center;
+}
+.contlibros{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-height: 100vh;
+    background-color: rgb(255, 252, 247);
+    overflow-y: scroll;
+    width: 100%;
+    align-items: center;
+} 
+.inputSearch{
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid black;
+}
+@media screen and (max-width: 600px) {
+    .headerHome{
+        padding: 0;
+        align-items: center;
+    }
+    .headerHome h1{
+        background-color: transparent;
+        font-size: 13px;
+        margin: 0;
+    }
+    .contInp{
+        flex-direction: column;
+    }
+    .contInp h2{
+        font-size: 19px;
+        text-align: center;
+    }
+    .inputSearch{
+        height: 30px;
+    }
+    .linkadm{
+        width: 50px;
+        height: 30px;
+        font-size: 13px;
+    }
+    .linkadm2{
+        width: 80px;
+        height: 30px;
+        font-size: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 2px;
+    }
+    
+}

@@ -1,0 +1,38 @@
+.card-body {
+    background-image: url("../../Img/fonodlibro2.jpg");
+    background-position: center;
+    background-size: cover; 
+}
+.filtro{
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.39) !important;
+    border-radius: 5px !important;
+    padding: 10px;
+}
+.btnDelete:hover{
+    background-color: rgb(223, 0, 0) !important;
+}
+.card-link:hover{
+    color: red !important;
+    font-weight: 600;
+}
+@media screen and (max-width: 600px) {
+    .card-text{
+        font-size: 10px;
+        margin-bottom: 5px;
+    }
+    .card-title{
+        width: 80%;
+        text-align: end;
+        font-size: 15px;
+    }
+    .cate{
+        font-size: 10px;
+    }
+    .filtro{
+        padding: 3px;
+    }
+    .btnDelete{
+        font-size: 8px !important;
+    }
+}
