@@ -60,8 +60,8 @@ export default function Home() {
       return normalizedTitulo.includes(normalizedSearchTerm);
     })
     .sort((a, b) => a.cliente.localeCompare(b.cliente));
-  
-   const handleBookDeleted = (deletedBookId) => {
+
+  const handleBookDeleted = (deletedBookId) => {
     setBooks(prevBooks => prevBooks.filter(book => book._id !== deletedBookId));
   };
 
@@ -73,10 +73,13 @@ export default function Home() {
         {isLoggedIn && <button onClick={openSettings} className='linkadm2'>Agregar Cliente</button>}
         {open && <ModaleCreateBook key={isClosed} onClose={() => { closeModal2(); fetchBooks(); }} />} {/* Actualizar libros después de cerrar el modal */}
         {isLoggedIn && <button onClick={handleLogout} className='linkadm2'>Cerrar Sesión</button>}
-        {!isLoggedIn && <a href="/login" className='linkadm'>Admin</a>}
+        <div style={{display: "flex"}}>
+          {!isLoggedIn && <a href="/login" className='linkadm'>Admin</a>}
+          <a href="/repuestos" className='linkadm'>Repuestos</a>
+        </div>
       </div>
       <div className="contlibros">
-        <div className="contInp" style={{display:"flex", justifyContent:"space-between", width:"95%"}}>
+        <div className="contInp" style={{ display: "flex", justifyContent: "space-between", width: "95%" }}>
           <h2>Clientes</h2>
           <input
             type="text"
